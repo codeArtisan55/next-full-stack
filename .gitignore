@@ -9,9 +9,13 @@
 # testing
 /coverage
 
+
 # next.js
 /.next/
 /out/
+
+/package.json
+package-lock.json
 
 # production
 /build
