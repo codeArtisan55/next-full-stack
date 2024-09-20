@@ -1,10 +1,16 @@
 import mongoose,{Schema,Document} from "mongoose"  // Document is for , typescript , typesafety
 
+interface cardMessage{
+    content:string,
+    createdAt:Date,
+    _id:string,
+    
+}
 
 export interface Message extends Document{
     content:string,
-    createdAt:Date
-
+    createdAt:Date,
+    messages?:Array<cardMessage>
 }
 
 const messageSchema:Schema<Message>=new Schema({
@@ -28,7 +34,6 @@ export interface User extends Document{
     isVerified:boolean,
     isAcceptingMessage:boolean,
     messages:Message[]
-
 
 }
 

@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Alice Johnson",
+    "content": "Exploring the latest trends in AI and machine learning.",
+    "createdAt": "2024-08-19"
+  },
+  {
+    "name": "Bob Smith",
+    "content": "Just finished reading a great book on software architecture!",
+    "createdAt": "2024-08-18"
+  },
+  {
+    "name": "Catherine Lee",
+    "content": "Excited about the new project kickoff next week.",
+    "createdAt": "2024-08-17"
+  },
+  {
+    "name": "David Williams",
+    "content": "Attended a fascinating webinar on cloud computing today.",
+    "createdAt": "2024-08-16"
+  },
+  {
+    "name": "Emily Davis",
+    "content": "Had a productive day working on front-end development tasks.",
+    "createdAt": "2024-08-15"
+  }
+]

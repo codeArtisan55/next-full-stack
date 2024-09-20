@@ -19,7 +19,6 @@ export async function POST(request:Request) {
     
         const existingUserByEmail=await UserModel.findOne({email})
         const otp = randomInt(100000, 999999).toString();
-        console.log(otp);
         
     
         if (existingUserByEmail) {
