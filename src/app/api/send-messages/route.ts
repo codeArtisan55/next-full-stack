@@ -1,17 +1,21 @@
 import UserModel from "@/models/user.model";
-import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "../auth/[...nextauth]/options";
 import { dbConnect } from "@/lib/dbConnect";
 import mongoose from "mongoose";
 import { Message } from "@/models/user.model";
+import { auth } from "@/auth";
 
 
 export async  function POST(request:Request){
     await dbConnect()
+    type userT={
+        _id:string,
+        email:string,
+        username:string
+    }
 
     try {
-        const session=await getServerSession(nextAuthOptions) //to check is user is logges in or not
-        const userSession=session?.user
+        const session=await auth() // this requires the authoptions
+        const userSession=session?.user as userT
 
         if (!session && !userSession) {
             console.log("user not found");
@@ -20,19 +24,19 @@ export async  function POST(request:Request){
             
         }
         const {username,content}=await request.json()
+        console.log(username,content);
+        
         const user=await UserModel.findOne({username})
         if (!user) {
             console.log("user not found");
-            
             return Response.json({success:false, message:"could not find user"})
         }
 
         if (!user.isAcceptingMessage) {
-            console.log("user not found");
             
             return Response.json({success:false, message:"user is not accepting messages"},{status:401})
         }
-          const newMessage={content,createdAt:new Date()}
+          const newMessage={content:content.bio,createdAt:new Date()}
         user.messages.push(newMessage as Message) // this is assertion
         await user.save()
             
@@ -40,8 +44,6 @@ export async  function POST(request:Request){
 
             
         }
-        
-        
      catch (error) {
         console.log("couldnot send messages");
             
