@@ -31,12 +31,12 @@ import Link from "next/link"
   const [userName,setUsername]=useState('')
   const [userNameMessage,setUserNameMessage]=useState('')
   const [checkingUsername,setCheckingUsername]=useState(false)
-  const [isformSubmitting,setIsformSubmitting]=useState(false)  
-  const [isUserNameUnique,setisUserNameUnique]=useState(false)  
+  const [isformSubmitting,setIsformSubmitting]=useState(false)
+  const [isUserNameUnique,setisUserNameUnique]=useState(false)
   const debounced=useDebounceCallback(setUsername, 500) // this is the debounced value , i will use this value in form and for backnd request
   const { toast } = useToast()
 
-  
+
   //   zod implementation
  const form= useForm({
   resolver:zodResolver(signupSchema), // provide the schema
@@ -60,7 +60,7 @@ import Link from "next/link"
         setUserNameMessage(response.data.message)
         if (response.data.success) {
           setisUserNameUnique(true)
-          
+
         }else{
           setisUserNameUnique(false)
 
@@ -85,13 +85,13 @@ import Link from "next/link"
           title: "failed",
           description: "username unique check failed",
         })
-        
-        
+
+
       }finally{
       setCheckingUsername(false) // success or false , but  setCheckingUsername , should be set false
 
       }
-      
+
     }
   }
   isUserNameUnique()
@@ -101,7 +101,7 @@ import Link from "next/link"
 const onSubmit=async (data:z.infer<typeof signupSchema>)=>{
   setIsformSubmitting(true)
   console.log(data);
-  
+
   try {
     const response=await axios.post<apiResponse>('/api/signup',data)
     if(response.data.success){
@@ -111,8 +111,8 @@ const onSubmit=async (data:z.infer<typeof signupSchema>)=>{
       })
     }
     router.push(`/verify/${userName}`)
-    
-    
+
+
   } catch (error) {
     console.log(error);
     toast({
