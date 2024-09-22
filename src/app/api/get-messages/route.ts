@@ -18,28 +18,28 @@ export async  function GET(request:Request){
 
         if (!session && !user) {
             console.log("user not found");
-            
+
             return Response.json({success:false, message:"could not fetch messages"})
-            
+
         }
         const userId= new mongoose.Types.ObjectId( user._id) // this method will convert userid string to mongodb Objectid
 
         const userMessages=await UserModel.aggregate([
             {$match:{_id:userId}}, // match id and get user
-            {$unwind:'$messages'}, // separate messages 
+            {$unwind:'$messages'}, // separate messages
             {$sort:{"messages.createdAt": -1}},
             {$group:{_id:"$_id", messages:{$push:"$messages"}}}
         ])
 
 
         return Response.json({success:true, message:"showing all messages",messages:userMessages})
-        
-        
+
+
     } catch (error) {
         console.log("user not found");
-            
+
         return Response.json({success:false, message:"could not fetch messages"})
-        
+
     }
 
 }

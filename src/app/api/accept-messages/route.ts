@@ -1,7 +1,6 @@
 import UserModel from "@/models/user.model";
 import { dbConnect } from "@/lib/dbConnect";
 import { auth } from "@/auth";
-import { apiResponse } from "@/types/apiResponse";
 
 export async function POST(request:Request){ // this post method is to update user isAccepting messages status
     await dbConnect()
@@ -17,7 +16,7 @@ export async function POST(request:Request){ // this post method is to update us
         if (!session && !user) {
 
         return Response.json({success:false, message:"user not found"},{status:400})
-            
+
         }
 
         const userId=user._id
@@ -27,18 +26,18 @@ export async function POST(request:Request){ // this post method is to update us
         if (!updatedUser) {
             console.log("failed to update user accept messages");
             return Response.json({success:false, message:"could not update acceptmessages"},{status:401})
-            
+
         }
         return Response.json({success:true, message:"user messages updated successfully",updatedUser},{status:200})
 
 
 
 
-        
+
     } catch (error) {
         console.log("failed to update user accept messages");
         return Response.json({success:false, message:"something went wrong"})
-        
+
     }
 
 }
@@ -56,7 +55,7 @@ export async function GET(request:Request){
         if (!session && !user) {
 
         return Response.json({success:false, message:"user not found"},{status:400})
-            
+
         }
 
         const userId=user._id
@@ -64,13 +63,13 @@ export async function GET(request:Request){
         if (!foundUser) {
             console.log("user not found");
             return Response.json({success:false, message:"couldnot find user"})
-            
+
         }
         return Response.json({success:true,isAcceptingMessage:foundUser.isAcceptingMessage})
     } catch (error) {
         console.log("failed to update user accept messages");
         return Response.json({success:false, message:"couldnot found user"})
-        
-        
+
+
     }
 }
