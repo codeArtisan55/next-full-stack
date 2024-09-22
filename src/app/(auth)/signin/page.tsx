@@ -66,7 +66,7 @@ const onSubmit=async (data:z.infer<typeof signinSchema>)=>{
             title:"success",
             description:"login successful"
           })
-          router.replace("/dashboard")
+          router.push("/dashboard")
 
         }
 
