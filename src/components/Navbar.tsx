@@ -14,7 +14,7 @@ const Navbar =  () => {
   return (
     <>
     <div className="w-full flex justify-between p-4">
-     
+
       {session ? (
         <>
         <h1 className="text-2xl font-bold capitalize">{session.user.username ?? 'no user name'}</h1>
