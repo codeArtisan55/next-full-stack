@@ -25,12 +25,12 @@ import { signIn } from "next-auth/react"
 
 
 const Signin=()=>{
-  
+
   const router=useRouter()
 
      const {toast}=useToast()
   //state managements
-  const [isformSubmitting,setIsformSubmitting]=useState(false)  
+  const [isformSubmitting,setIsformSubmitting]=useState(false)
   // const [result,setResult]=useState({})
 
   //   zod implementation
@@ -42,11 +42,11 @@ const Signin=()=>{
   }
  })
 
- 
+
 
 const onSubmit=async (data:z.infer<typeof signinSchema>)=>{
   setIsformSubmitting(true)
-  
+
   try {
     const result=await signIn("credentials",{ // signin from nextauth
       identifier:data.identifier,
@@ -67,10 +67,10 @@ const onSubmit=async (data:z.infer<typeof signinSchema>)=>{
             description:"login successful"
           })
           router.replace("/dashboard")
-          
+
         }
-   
-    
+
+
   } catch (error) {
     console.log(error);
     toast({
