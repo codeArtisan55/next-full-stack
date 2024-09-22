@@ -5,7 +5,7 @@ export interface messageCard {
     content: string;
     createdAt: Date | string;
     _id?:string
-    handleDelete:any
+    handleDelete?:(id:string)=>void
 
   }
 

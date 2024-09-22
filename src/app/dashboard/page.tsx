@@ -33,23 +33,23 @@ const Dashboard = () => {
   const [isSwitchLoading,setIsSwitchLoading]=useState(false)
   const [profileUrl, setProfileUrl] = useState('');
   // console.log(messages);
-  
 
-  
 
-  
 
-  
-  
+
+
+
+
+
 
   const {data:session}=useSession()
 
   const handleDeleteMessage=async (messageId:string)=>{
       setMessages(messages.filter((message)=>{
-        
+
         return message._id !== messageId
       }))
-      
+
   }
 
   const form=useForm({
@@ -72,7 +72,7 @@ const Dashboard = () => {
         title:"failed",
         description:axiosError?.response?.data.message
       })
-      
+
     }finally{
     setIsSwitchLoading(false)
 
@@ -84,18 +84,18 @@ const Dashboard = () => {
   const getMessages=useCallback(async(refresh:boolean=false)=>{
     setIsloading(true)
     console.log(session?.user?.isAcceptingMessage);
-    
+
 
     try {
       const response=await axios.get<apiResponse>("/api/get-messages")
       // console.log(response);
-      
-      
+
+
       if(response?.data?.messages){
         console.log(response?.data?.messages[0].messages || []);
         setMessages(response?.data?.messages[0].messages || [])
       }
-      
+
       if (refresh) {
 
         toast({
@@ -103,25 +103,25 @@ const Dashboard = () => {
           description:"showing latest messages"
         })
       }
-      
+
     } catch (error) {
-       
+
       toast({
         title:"Failed",
         description:"could not fetch messages"
       })
-      
+
     }finally{
     setIsloading(true)
 
     }
 
-  },[setIsloading,setMessages])
+  },[isLoading,messages])
 
 
   useEffect(()=>{
 
-    if(!session || !session.user) return
+    if(!session || !session.user) {return}
     getMessages(true)
     fetchAcceptMessages()
 
@@ -143,14 +143,14 @@ const Dashboard = () => {
         title:"Success",
         description:"user accept messages updated"
       })
-      
-     
+
+
     } catch (error) {
       toast({
         title:"Fail",
         description:"could not update user accept messages"
       })
-      
+
     }
 
   }
@@ -163,12 +163,12 @@ const Dashboard = () => {
 
 
 
- 
+
 
   return (
     <div className='md:w-[80%] md:m-auto p-5 overflow-x-hidden w-full'>
       <div className='flex flex-col gap-5 m-10 p-5'>
-        
+
         <div className='flex justify-between'>
         <h1 className={`text-2xl md:text-4xl font-bold capitalize`}>
         {session?.user.username} Dashboard
@@ -179,7 +179,7 @@ const Dashboard = () => {
     Accep User Messages
   </HoverCardContent>
 </HoverCard>
-        
+
         </div>
         <Separator className=' border-black'/>
 
@@ -194,7 +194,7 @@ const Dashboard = () => {
             {messages.length > 0 ?
              (<>{
               messages.map((message,index)=>{
-                
+
                  return <MessageCard key={message._id || index} {...message} handleDelete={handleDeleteMessage}/>
               })
              }</>):

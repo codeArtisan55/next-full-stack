@@ -66,21 +66,10 @@ import Link from "next/link"
 
 
         }
-        // toast({
-        //   title: "username is unique",
-        //   description: "you may continue",
-        // })
-      // }else{
-        // setisUserNameUnique(false)
-        // toast({
-        //   title: "username is taken",
-        //   description: "please choose anoher username",
-        // })
 
-      // }
+
 
       } catch (error) {
-        // console.log(error);
         toast({
           title: "failed",
           description: "username unique check failed",

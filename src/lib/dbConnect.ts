@@ -19,7 +19,7 @@ export async function dbConnect ():Promise<void>{
         return
     }
     try {
-        const db=await mongoose.connect(process.env.DB_URI || '' , {})
+        const db=await mongoose.connect(process.env.DB_URI!)
         logs.data=db.connections
 
         connection.isConnected=db.connections[0].readyState

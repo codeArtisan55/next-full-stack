@@ -12,7 +12,13 @@ import {messageCard} from "@/types/messageTypes"
 import { Button } from "./ui/button"
 import axios from "axios";
 import { useToast } from "./ui/use-toast";
-  
+interface messageCardProps {
+  content:string,
+  createdAt:Date,
+  _id:string,
+  handleDelete?:(id:string)=>void
+}
+
   const MessageCard = ({content,createdAt,_id,handleDelete}:messageCard) => {
     const { toast } = useToast();
 
@@ -22,7 +28,7 @@ console.log(messageId);
 
 
       const response=await axios.delete(`/api/delete-message/${messageId}`)
-      
+
       if(response.data.success){
         toast({
           title:"success",
@@ -34,7 +40,7 @@ console.log(messageId);
         <Card >
             <Button variant="outline" onClick={()=> {
               handleDeleteMessage(_id as string)
-              handleDelete(_id)
+              handleDelete && handleDelete(_id as string)
               }}>
                 <X/>
             </Button>
@@ -46,10 +52,9 @@ console.log(messageId);
         { typeof(createdAt)==="object" ? createdAt.toLocaleDateString("en-GB"): new Date(createdAt).toLocaleDateString("en-GB")}
         </CardFooter>
       </Card>
-      
+
     )
   }
-  
+
   export default MessageCard
-  
- 
+

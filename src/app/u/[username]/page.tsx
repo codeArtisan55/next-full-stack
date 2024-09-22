@@ -2,7 +2,7 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
 import { Textarea } from "@/components/ui/textarea"
- 
+
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -64,16 +64,15 @@ async function onSubmit(data: z.infer<typeof FormSchema>) {
       })
 
     }
-    
-  } catch (error) {
-    const axiosError=error as AxiosError
+
+  } catch (error:any) {
     toast({
       title: "Failed",
-      description:axiosError?.response?.data?.message
+      description:error.response.data.message
     })
-    
+
   }
- 
+
 }
 
 
@@ -112,7 +111,7 @@ async function onSubmit(data: z.infer<typeof FormSchema>) {
             </div>
 
         </section>
-      
+
     </div>
   )
 }

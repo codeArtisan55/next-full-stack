@@ -17,10 +17,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
             await dbConnect()
 
-    
-              const { identifier, password } = await signinSchema.parseAsync(credentials) // data from frontend
+
+              const {password } = await signinSchema.parseAsync(credentials) // data from frontend
               // const { identifier, password } =await credentials // data from frontend
-    
+
               const User=await UserModel.findOne({$or:[{email:credentials.identifier},{username:credentials.identifier}]})
               if (!User) {
                 throw new CredentialsSignin("User no found")
@@ -28,11 +28,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               const isPasswordCorrect=await bcrypt.compare(password,User.password).then((res)=>{
                 return res
               })
-    
+
               if (!isPasswordCorrect) {
                 throw new CredentialsSignin("password is invalid")
               }
-              
+
               // return JSON object with the User data and also the data which you want to store in session
               if(User){
                   return User
@@ -40,8 +40,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               else{
                 return null
               }
-              
-             
+
+
             // return User object with their profile data
           },
     }
@@ -68,7 +68,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }
         return session
       }
-     
+
   },
   pages:{
     signIn:'/signin',
@@ -77,5 +77,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy:'jwt',
     maxAge:30 * 24 * 60 * 60, // 30 days
     updateAge:24 * 60 * 60, // 24 hours
-  }
+  },
+  trustHost:true
 })
