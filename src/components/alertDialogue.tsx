@@ -33,11 +33,9 @@ import { Button } from "./ui/button"
     <AlertDialogFooter>
       <AlertDialogCancel>Cancel</AlertDialogCancel>
 
-  <form action={async()=>{
-    const res=await signOut({redirect:false})
-    if(res){
-      router.replace("/")
-    }
+  <form action={async()=>{ // use signout onsubmit as it will
+    await signOut({redirect:true,callbackUrl:"/"}) // avoid using action for signout as it will cause a fail reload of the page
+
   }}>
       <AlertDialogAction type="submit">Continue</AlertDialogAction>
       </form>

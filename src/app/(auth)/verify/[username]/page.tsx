@@ -22,8 +22,8 @@ import { toast } from '@/components/ui/use-toast'
 import { Loader2 } from 'lucide-react'
 
 const Verify = () => {
-  const [isformSubmitting,setIsformSubmitting]=useState(false)  
-  
+  const [isformSubmitting,setIsformSubmitting]=useState(false)
+
     const form= useForm({
         resolver:zodResolver(verifySchema), // provide the schema
         defaultValues:{
@@ -45,13 +45,13 @@ const onSubmit=async (data: z.infer<typeof verifySchema>)=>{
         code:data?.code
 
       })
-      
+
     } catch (error) {
       toast({
         title:"failed",
         description:"verification failed"
       })
-      
+
     }finally{
     setIsformSubmitting(false)
 
@@ -60,7 +60,7 @@ const onSubmit=async (data: z.infer<typeof verifySchema>)=>{
 
 
 }
-      
+
   return (
     <div className='flex items-center justify-center w-full h-screen'>
       <div className='p-5 space-y-10 shadow-md rounded-md  ' >

@@ -28,6 +28,8 @@ declare module "next-auth" {
     }
 
   }
+
+  
 }
  
 

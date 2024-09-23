@@ -1,6 +1,5 @@
 "use client"
 import React, { useCallback, useEffect, useState } from 'react'
-import { Message } from '@/models/user.model';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AcceptmessageSchema } from '@/schemas/AcceptMessageSchema';
@@ -9,20 +8,17 @@ import { apiResponse } from '@/types/apiResponse';
 import { toast } from '@/components/ui/use-toast';
 import { useSession } from 'next-auth/react';
 import { Switch } from "@/components/ui/switch"
-import {Inter_Tight} from "next/font/google"
 import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button';
 import MessageCard from '@/components/Card';
 import {MessageT} from "@/types/messageTypes"
-import {messageCard} from "@/types/messageTypes"
-
+import { redirect } from 'next/navigation';
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
-import { Loader2 } from 'lucide-react';
 
 
 
@@ -156,9 +152,9 @@ const Dashboard = () => {
   }
 
 
-  if(!session || !session?.user){
-    return <div className='text-4xl'> <Loader2 className='animate-spin'/></div>
-  }
+  // if(!session || !session?.user){
+  //   redirect("/signin")
+  // }
 
 
 
