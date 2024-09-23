@@ -9,6 +9,7 @@ export default async function middleware(request: NextRequest) {
   const isPublicPath = publicPaths.includes(pathname);
 
   if (session && isPublicPath) {
+    console.log("redirecting to dashboard");
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
@@ -16,9 +17,8 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/signin", request.url));
   }
 
-  return NextResponse.next(); // Allow request to proceed if no redirect is needed
 }
 
 export const config = {
-  matcher: ['/signin', '/dashboard/:path*', '/profile'],
+  matcher: [ '/dashboard', '/u/:path*', '/signin', '/signup', '/verify-code'],
 };

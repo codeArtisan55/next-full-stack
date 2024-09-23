@@ -71,7 +71,7 @@ const onSubmit=async (data:z.infer<typeof signinSchema>)=>{
           })
 
         }
-        router.push("/dashboard")
+        router.replace("/dashboard")
 
 
   } catch (error) {
