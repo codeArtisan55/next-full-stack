@@ -13,7 +13,7 @@ import {
 import { useRouter } from "next/navigation"
 import { signOut } from "next-auth/react"
 import { Button } from "./ui/button"
-  
+
   const AlertDialogue = () => {
     const router=useRouter()
 
@@ -32,7 +32,7 @@ import { Button } from "./ui/button"
     </AlertDialogHeader>
     <AlertDialogFooter>
       <AlertDialogCancel>Cancel</AlertDialogCancel>
-    
+
   <form action={async()=>{
     const res=await signOut({redirect:false})
     if(res){
@@ -40,7 +40,7 @@ import { Button } from "./ui/button"
     }
   }}>
       <AlertDialogAction type="submit">Continue</AlertDialogAction>
-      </form> 
+      </form>
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>
@@ -49,5 +49,5 @@ import { Button } from "./ui/button"
   }
 
   export default AlertDialogue
-  
+
 

@@ -45,6 +45,7 @@ const Signin=()=>{
 
 
 const onSubmit=async (data:z.infer<typeof signinSchema>)=>{
+
   setIsformSubmitting(true)
 
   try {
@@ -52,23 +53,25 @@ const onSubmit=async (data:z.infer<typeof signinSchema>)=>{
       identifier:data.identifier,
       password:data.password,
       redirect:false,
-
+      // callbackUrl:"/dashboard"
     })
+    console.log(result);
 
     if(!result?.url){
       toast({
         title:"failed",
         description:"could not signin"
       })
+      return
     }
     if (result?.url) {
         toast({
             title:"success",
             description:"login successful"
           })
-          router.push("/dashboard")
 
         }
+        router.push("/dashboard")
 
 
   } catch (error) {

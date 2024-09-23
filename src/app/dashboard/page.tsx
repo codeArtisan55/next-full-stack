@@ -22,7 +22,6 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
-import { log } from 'console';
 
 
 
@@ -157,7 +156,7 @@ const Dashboard = () => {
 
 
   if(!session || !session?.user){
-    return <div>Please login first</div>
+    return <div className='text-4xl'>Please login first</div>
   }
 
 

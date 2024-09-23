@@ -23,13 +23,8 @@ export async function dbConnect ():Promise<void>{
         throw new Error("DB_URI is not defined")
     }
     try {
-        const options = {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            serverSelectionTimeoutMS: 5000, // Increase timeout to 5 seconds
-            connectTimeoutMS: 10000, // Increase connection timeout to 10 seconds
-          };
-        const db=await mongoose.connect(db_uri,options)
+
+        const db=await mongoose.connect(db_uri)
         logs.data=db.connections
 
         connection.isConnected=db.connections[0].readyState
