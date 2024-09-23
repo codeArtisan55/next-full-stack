@@ -79,4 +79,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     updateAge:24 * 60 * 60, // 24 hours
   },
   secret:process.env.SECRET,
+  debug:true,
 })
