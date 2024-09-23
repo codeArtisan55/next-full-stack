@@ -1,20 +1,27 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-
+import { decode } from 'next-auth/jwt';
+import { cookies } from 'next/headers';
 export default async function middleware(request: NextRequest) {
-  const session = request.cookies.get("authjs.session-token")?.value;
+  const session = cookies().get("authjs.session-token");
+  const decodedSession = await decode({
+    token:session?.value,
+    secret:process.env.SECRET!,
+    salt:session?.name as string,
+
+  })
+
   const pathname = request.nextUrl.pathname;
 
   const publicPaths = ["/signin", "/signup", "/verify-code"];
   const isPublicPath = publicPaths.includes(pathname);
 
-  if (session && isPublicPath) {
-    console.log("redirecting to dashboard");
+  if (decodedSession && isPublicPath) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
-  if (!session && !isPublicPath) {
-    return NextResponse.redirect(new URL("/u/awais", request.url));
+  if (!decodedSession && !isPublicPath) {
+    return NextResponse.redirect(new URL("/signin", request.url));
   }
 
 }
