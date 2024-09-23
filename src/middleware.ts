@@ -12,9 +12,10 @@ export default async function middleware(request: NextRequest) {
   })
   if(decodedSession){
     console.log("decodedSession", decodedSession);
+    alert("decodedSession")
 
   }
-
+alert("trying the middleware")
   const pathname = request.nextUrl.pathname;
 
   const publicPaths = ["/signin", "/signup", "/verify-code"];
