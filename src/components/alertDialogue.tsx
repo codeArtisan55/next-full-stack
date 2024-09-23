@@ -10,7 +10,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
-import { useRouter } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
 import { signOut } from "next-auth/react"
 import { Button } from "./ui/button"
 
@@ -34,7 +34,10 @@ import { Button } from "./ui/button"
       <AlertDialogCancel>Cancel</AlertDialogCancel>
 
   <form onSubmit={async()=>{
-    await signOut({redirect:true,callbackUrl:"/"})
+    const res=await signOut({redirect:false})
+    if(res){
+      redirect("/")
+    }
 
   }}>
       <AlertDialogAction type="submit">Continue</AlertDialogAction>
