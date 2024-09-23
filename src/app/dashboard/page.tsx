@@ -22,6 +22,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
+import { Loader2 } from 'lucide-react';
 
 
 
@@ -156,7 +157,7 @@ const Dashboard = () => {
 
 
   if(!session || !session?.user){
-    return <div className='text-4xl'>Please login first</div>
+    return <div className='text-4xl'> <Loader2 className='animate-spin'/></div>
   }
 
 
