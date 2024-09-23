@@ -14,7 +14,7 @@ export default async function middleware(request: NextRequest) {
   }
 
   if (!session && !isPublicPath) {
-    return NextResponse.redirect(new URL("/signin", request.url));
+    return NextResponse.redirect(new URL("/u/awais", request.url));
   }
 
 }
