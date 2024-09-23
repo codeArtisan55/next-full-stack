@@ -38,12 +38,14 @@ console.log(messageId);
     }
     return (
         <Card >
+          {
+          handleDelete && (
             <Button variant="outline" onClick={()=> {
               handleDeleteMessage(_id as string)
               handleDelete && handleDelete(_id as string)
               }}>
                 <X/>
-            </Button>
+            </Button>)}
         <CardHeader>
           <CardTitle>Message</CardTitle>
           <CardDescription>{content}</CardDescription>

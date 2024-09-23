@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 
 //  export { auth as middleware } from "@/auth"
 // This function can be marked `async` if using `await` inside
- export default async function middleware(request: NextRequest) { 
+ export default async function middleware(request: NextRequest) {
    // study why export every route
   const Cookie=cookies().get("authjs.session-token")
 
