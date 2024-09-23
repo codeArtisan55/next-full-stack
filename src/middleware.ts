@@ -10,6 +10,10 @@ export default async function middleware(request: NextRequest) {
     salt:session?.name as string,
 
   })
+  if(decodedSession){
+    console.log("decodedSession", decodedSession);
+
+  }
 
   const pathname = request.nextUrl.pathname;
 
