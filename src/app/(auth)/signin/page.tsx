@@ -16,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
-import {  useRouter } from "next/navigation"
+import {  redirect, useRouter } from "next/navigation"
 import Link from "next/link"
 import { signinSchema } from "@/schemas/SignInSchema"
 import { signIn } from "next-auth/react"
@@ -71,7 +71,7 @@ const onSubmit=async (data:z.infer<typeof signinSchema>)=>{
           })
 
         }
-        router.replace("/dashboard")
+        redirect("/dashboard")
 
 
   } catch (error) {

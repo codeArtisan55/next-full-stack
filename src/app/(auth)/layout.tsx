@@ -14,5 +14,5 @@ export default function AuthLayout({
     redirect("/dashboard");
   }
 
-  return <div>{children}</div>;
+  return (<div>{children}</div>);
 }
