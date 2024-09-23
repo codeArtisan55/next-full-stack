@@ -16,7 +16,9 @@ export default function RootLayout({
         redirect("/signin")
     }
   return(
+    <div>
       {children}
+    </div>
   )
 }
 
