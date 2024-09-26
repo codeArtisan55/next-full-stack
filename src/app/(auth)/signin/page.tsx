@@ -53,9 +53,8 @@ const onSubmit=async (data:z.infer<typeof signinSchema>)=>{
       identifier:data.identifier,
       password:data.password,
       redirect:false,
-      // callbackUrl:"/dashboard"
     })
-    console.log(result);
+    console.log(result?.error);
 
     if(!result?.url){
       toast({

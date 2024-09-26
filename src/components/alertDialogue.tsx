@@ -13,6 +13,7 @@ import {
 import { redirect, useRouter } from "next/navigation"
 import { signOut } from "next-auth/react"
 import { Button } from "./ui/button"
+import { tree } from "next/dist/build/templates/app-page"
 
   const AlertDialogue = () => {
     const router=useRouter()
@@ -33,11 +34,8 @@ import { Button } from "./ui/button"
     <AlertDialogFooter>
       <AlertDialogCancel>Cancel</AlertDialogCancel>
 
-  <form onSubmit={async()=>{
-    const res=await signOut({redirect:false})
-    if(res){
-      redirect("/")
-    }
+  <form  action={async()=>{
+    const res=await signOut({redirect:true,callbackUrl:"/"})
 
   }}>
       <AlertDialogAction type="submit">Continue</AlertDialogAction>

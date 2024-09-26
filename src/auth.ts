@@ -4,7 +4,6 @@ import { dbConnect } from "./lib/dbConnect"
 import { signinSchema } from "./schemas/SignInSchema"
 import UserModel from "./models/user.model"
 import bcrypt from "bcryptjs"
-import jwt from "jsonwebtoken"
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     CredentialProvider({
