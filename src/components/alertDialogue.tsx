@@ -10,12 +10,13 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
-import { redirect, useRouter } from "next/navigation"
+import {  useRouter } from "next/navigation"
 import { signOut } from "next-auth/react"
 import { Button } from "./ui/button"
-import { tree } from "next/dist/build/templates/app-page"
+import {useToast} from "@/components/ui/use-toast"
 
   const AlertDialogue = () => {
+    const {toast}=useToast()
     const router=useRouter()
 
     return (
@@ -36,6 +37,12 @@ import { tree } from "next/dist/build/templates/app-page"
 
   <form  action={async()=>{
     const res=await signOut({redirect:true,callbackUrl:"/"})
+    if(!res){
+      toast({
+        title:"failed",
+        description:"could not signout"
+      })
+    }
 
   }}>
       <AlertDialogAction type="submit">Continue</AlertDialogAction>

@@ -13,12 +13,15 @@ import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button';
 import MessageCard from '@/components/Card';
 import {MessageT} from "@/types/messageTypes"
-import { redirect } from 'next/navigation';
+import { StarsBackground } from "@/components/ui/stars-background";
+import {ShootingStars} from "@/components/ui/shooting-stars"
+
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
+import { RefreshCw } from 'lucide-react';
 
 
 
@@ -28,6 +31,7 @@ const Dashboard = () => {
   const [isLoading,setIsloading]=useState(false)
   const [isSwitchLoading,setIsSwitchLoading]=useState(false)
   const [profileUrl, setProfileUrl] = useState('');
+  const [refreshMessage,setRefresh]=useState(false)
   // console.log(messages);
 
 
@@ -35,6 +39,7 @@ const Dashboard = () => {
 
 
 
+console.log("refresh message",refreshMessage);
 
 
 
@@ -121,7 +126,7 @@ const Dashboard = () => {
     getMessages(true)
     fetchAcceptMessages()
 
-  },[session,setValue])
+  },[session,setValue,refreshMessage])
 
   useEffect(() => {
     const url = `${window.location.protocol}//${window.location.host}/${session?.user.username}`;
@@ -162,8 +167,11 @@ const Dashboard = () => {
 
 
   return (
-    <div className='md:w-[80%] md:m-auto p-5 overflow-x-hidden w-full'>
-      <div className='flex flex-col gap-5 m-10 p-5'>
+    <div className='md:w-[80%] md:m-auto p-5 relative overflow-x-hidden w-full'>
+
+      <ShootingStars className='absolute z-[-1]' minDelay={1000} maxDelay={4000} maxSpeed={10} minSpeed={10}/>
+      <StarsBackground  className='absolute z-[-1]' starDensity={0.00050	} />
+      <div className='flex flex-col gap-5 m-10 p-5 z-[999]'>
 
         <div className='flex justify-between'>
         <h1 className={`text-2xl md:text-4xl font-bold capitalize`}>
@@ -180,8 +188,11 @@ const Dashboard = () => {
         <Separator className=' border-black'/>
 
         <div className='flex gap-0'>
-          <Input value={profileUrl} disabled className='font-bold '/>
+          <Input value={profileUrl}   className='font-bold cursor-pointer'/>
           <Button>Copy</Button>
+        </div>
+        <div className='flex justify-end w-full '>
+          <RefreshCw className='cursor-pointer active:animate-spin' onClick={()=> {setRefresh(!refreshMessage)}} />
         </div>
 
         <div className='p-5'>

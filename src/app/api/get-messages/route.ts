@@ -16,6 +16,7 @@ export async  function GET(request:Request){
         const session=await auth() // this requires the authoptions
         const user=session?.user as userT
 
+
         if (!session && !user) {
             console.log("user not found");
 

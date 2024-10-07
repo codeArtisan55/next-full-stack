@@ -3,9 +3,6 @@ import Link from "next/link"
 import { useSession } from "next-auth/react"
 import { Button } from "./ui/button"
 import AlertDialogue from "@/components/alertDialogue"
-// import  SignOut  from "@/utilities/signOut"
-// import { signOut } from "@/auth" // this is server component , which is used in "use server"
-import { signOut } from "next-auth/react"
 import { useRouter } from "next/navigation"
 
 const Navbar =  () => {
@@ -17,8 +14,18 @@ const Navbar =  () => {
 
       {session ? (
         <>
+        <Link href='/'>
         <h1 className="text-2xl font-bold capitalize">{session.user.username ?? 'no user name'}</h1>
+        </Link>
+        <div className="flex space-x-3">
+          <Link href="/dashboard">
+        <Button variant="outline">Dashboard</Button>
+          </Link>
+          <Link href="/users">
+        <Button variant="outline">Users</Button>
+          </Link>
         <AlertDialogue/>
+        </div>
         </>
       ):(
         <Link href='/signin'>

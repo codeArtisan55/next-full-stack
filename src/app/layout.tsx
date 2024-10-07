@@ -29,7 +29,10 @@ export default function RootLayout({
             defaultTheme="dark"
             enableSystem
             disableTransitionOnChange>
+              <div className="h-screen w-full overflow-hidden">
+
         {children}
+              </div>
         <Toaster />
         </ThemeProvider>
       </body>

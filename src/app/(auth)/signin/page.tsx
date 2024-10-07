@@ -88,10 +88,10 @@ const onSubmit=async (data:z.infer<typeof signinSchema>)=>{
 }
 return (
   <>
-<div className="flex items-center justify-center h-screen w-full ">
-  <div className="w-1/3 m-2 h-4/5 shadow-md rounded-md px-8  p-4 space-y-20">
+<div className="flex items-start justify-center h-3/5 w-full overflow-hidden">
+  <div className="w-96 m-2 h-4/5 shadow-md rounded-md px-8  p-4 space-y-20 bg-white">
   <div className="text-center">
-  <h2 className="text-4xl capitalize font-bold m-2 ">Signin  Monkey</h2>
+  <h2 className="text-4xl text-black capitalize font-bold m-2 ">Get In</h2>
 
   </div>
   <Form  {...form} >
@@ -122,9 +122,9 @@ return (
     </FormItem>
   )}
 />
-<Button type="submit" disabled={isformSubmitting} >{isformSubmitting ? (<><Loader2 className="animate-spin"  /> please wait </> ):"Signin"}</Button>
+<Button variant="secondary" type="submit" disabled={isformSubmitting} >{isformSubmitting ? (<><Loader2 className="animate-spin"  /> please wait </> ):"Signin"}</Button>
 </form>
-<div className="text-center ">
+<div className="text-center text-secondary">
   <h1>New on this platform ? <Link className="font-bold" href='/signup'>signup</Link> </h1>
 </div>
     </Form>
